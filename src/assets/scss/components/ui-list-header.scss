@@ -1,0 +1,11 @@
+ui-list-header {
+    display: block;
+    background-color: $color-light;
+    padding: $list-header-vertical-padding $list-header-horizontal-padding;
+    border-top: $border-width solid $color-gray-light;
+    border-bottom: $border-width solid $color-gray-light;
+    ~ ui-list {
+        margin-top: 0;
+        border-top: 0;
+    }
+}

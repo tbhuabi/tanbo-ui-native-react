@@ -1,0 +1,23 @@
+ui-list-thumbnail {
+    @include flex-center;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-top: -$list-item-vertical-padding;
+    margin-bottom: -$list-item-vertical-padding;
+    min-height: 36px;
+    min-width: 36px;
+    &:first-child {
+        margin-right: $grid-column-padding;
+    }
+    &:last-child {
+        margin-left: $grid-column-padding;
+    }
+    img {
+        width: 36px;
+        height: 36px;
+        display: block;
+    }
+    .icon {
+        font-size: $icon-font-size;
+    }
+}

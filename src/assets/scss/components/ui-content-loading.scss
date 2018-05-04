@@ -1,0 +1,24 @@
+ui-content-loading {
+    z-index: $page-loading-z-index;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+}
+
+.ui-content-loading {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: rgba(0, 0, 0, .6);
+    border-radius: 10px;
+    padding: 5px 15px 10px;
+}
+
+.ui-content-loading-text {
+    margin: 0;
+    color: #fff;
+    font-size: 12px;
+    white-space: nowrap;
+}

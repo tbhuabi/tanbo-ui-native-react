@@ -1,0 +1,26 @@
+ui-tab-bar {
+    box-sizing: content-box;
+    height: $tab-bar-height;
+    display: flex;
+    border-top: $tab-bar-border-top;
+    background-color: $tab-bar-bg;
+}
+
+.iphone ui-tab-bar {
+}
+
+.iphone-x ui-tab-bar {
+    &:last-child {
+        @media screen and (max-width: 375px) {
+            padding-bottom: 34px;
+        }
+    }
+}
+
+.android {
+
+}
+
+.default {
+
+}

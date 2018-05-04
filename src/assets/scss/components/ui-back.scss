@@ -1,0 +1,41 @@
+.ui-back {
+    height: 100%;
+    font-size: $icon-font-size;
+    width: 0;
+    position: relative;
+    z-index: 1;
+    color: $color-primary;
+    cursor: pointer;
+    transition: opacify .3s;
+    display: flex;
+    align-items: center;
+}
+
+.ui-back-wrap {
+    display: table-row;
+
+    &:active {
+        opacity: .5;
+    }
+}
+
+.ui-back-icon {
+    overflow: hidden;
+    display: table-cell;
+    vertical-align: middle;
+
+}
+
+.ui-icon-arrow-back {
+    width: $title-horizontal-distance;
+    position: relative;
+    left: -4px;
+}
+
+.ui-back-text {
+    font-size: $font-size-larger;
+    position: relative;
+    display: table-cell;
+    vertical-align: middle;
+    white-space: nowrap;
+}

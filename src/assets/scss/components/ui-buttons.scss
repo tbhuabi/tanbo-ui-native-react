@@ -1,0 +1,39 @@
+ui-buttons {
+    //width: 0;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    white-space: nowrap;
+    &:last-child {
+        justify-content: flex-end;
+        align-items: center;
+        position: absolute;
+        padding-right: 10px;
+        right: 0;
+        left: auto;
+        top: 0;
+    }
+    &:first-child {
+        justify-content: flex-start;
+        align-items: center;
+        position: absolute;
+        padding-left: 10px;
+        left: 0;
+        right: auto;
+        top: 0;
+    }
+
+    &.pull-left {
+        padding-left: 10px !important;
+        left: 0 !important;
+        right: auto !important;
+        justify-content: flex-start !important;
+    }
+    &.pull-right {
+        padding-right: 10px !important;
+        right: 0 !important;
+        left: auto !important;
+        justify-content: flex-end !important;
+    }
+}
