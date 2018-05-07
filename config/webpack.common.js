@@ -13,32 +13,29 @@ const publicPaths = [path.resolve(appPath, 'assets'), path.resolve(appPath, '../
 module.exports = {
   entry: {
     vendor: ['react', 'react-dom'],
-    app: path.resolve(appPath, 'app.jsx')
+    app: path.resolve(appPath, 'app.tsx')
   },
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.ts', '.tsx']
   },
   module: {
     rules: [{
-      test: /\.jsx?$/,
+      test: /\.tsx?$/,
       enforce: 'pre',
       exclude: /node_modules/,
       use: [{
-        loader: 'eslint-loader',
+        loader: 'tslint-loader',
         options: {
-          configFile: path.resolve(__dirname, '../.eslintrc')
+          configuration: require('../tslint.json'),
+          emitErrors: false,
+          failOnHint: false,
+          formatter: 'tslint-formatter-eslint-style'
         }
       }]
     }, {
-      test: /\.jsx?$/,
+      test: /\.tsx?$/,
       include: appPath,
-      use: [{
-        loader: 'babel-loader',
-        options: {
-          presets: ['env', 'react', 'stage-3'],
-          compact: false
-        }
-      }, './config/react-hot-loader']
+      use: ['awesome-typescript-loader', './config/react-hot-loader']
     }, {
       test: /\.html$/,
       use: ['html-loader']

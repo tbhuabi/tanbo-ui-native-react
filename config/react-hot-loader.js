@@ -23,7 +23,8 @@ module.exports = function (source, sourcemap) {
   let newSource = source;
   if (isEntry(this.resourcePath, this.options.entry)) {
     newSource = source + `\n
-        if (module && module.hot) {
+        declare const module: any;
+        if (module.hot) {
             module.hot.accept();
         }`;
   }
