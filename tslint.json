@@ -8,6 +8,7 @@
     "member-access": false,
     "no-default-export": false,
     "eofline": false,
-    "interface-name": false
+    "interface-name": false,
+    "trailing-comma": false
   }
 }
