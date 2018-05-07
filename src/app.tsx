@@ -11,19 +11,19 @@ import { Home } from './views/home';
 import { List } from './views/list';
 
 export class App extends Component {
-    render() {
-        return (
-            <BrowserRouter>
-                <UIApp>
-                    <Switch>
-                        <Route path="/home" component={Home}/>
-                        <Route path="/list" component={List}/>
-                        <Redirect to="/home"/>
-                    </Switch>
-                </UIApp>
-            </BrowserRouter>
-        );
-    }
+  render() {
+    return (
+      <BrowserRouter>
+        <UIApp>
+          <Switch>
+            <Route path="/home" component={Home}/>
+            <Route path="/list" component={List}/>
+            <Redirect to="/home"/>
+          </Switch>
+        </UIApp>
+      </BrowserRouter>
+    );
+  }
 }
 
 render(<App/>, document.getElementById('app'));
