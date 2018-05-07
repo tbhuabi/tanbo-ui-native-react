@@ -10,20 +10,20 @@ let config = Object.assign({}, commonConfig);
 
 let entry = config.entry;
 Object.keys(entry).forEach(function (key) {
-  entry[key] = ['eventsource-polyfill', 'webpack-hot-middleware/client', 'webpack/hot/only-dev-server'].concat(entry[key]);
+    entry[key] = ['eventsource-polyfill', 'webpack-hot-middleware/client', 'webpack/hot/only-dev-server'].concat(entry[key]);
 });
 module.exports = webpackMerge(config, {
-  devtool: 'cheap-module-eval-source-map',
-  output: {
-    path: globalConfig.buildPath,
-    publicPath: '/',
-    filename: path.posix.join(globalConfig.staticPublicPath, 'js/[name].js'),
-    chunkFilename: path.posix.join(globalConfig.staticPublicPath, 'js/[id].chunk.js')
-  },
-  plugins: [
-    new ExtractTextPlugin(path.posix.join(globalConfig.staticPublicPath, 'css/[name].css')),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin(),
-    new webpack.NoEmitOnErrorsPlugin()
-  ]
+    devtool: 'cheap-module-eval-source-map',
+    output: {
+        path: globalConfig.buildPath,
+        publicPath: '/',
+        filename: path.posix.join(globalConfig.staticPublicPath, 'js/[name].js'),
+        chunkFilename: path.posix.join(globalConfig.staticPublicPath, 'js/[id].chunk.js')
+    },
+    plugins: [
+        new ExtractTextPlugin(path.posix.join(globalConfig.staticPublicPath, 'css/[name].css')),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NamedModulesPlugin(),
+        new webpack.NoEmitOnErrorsPlugin()
+    ]
 });
