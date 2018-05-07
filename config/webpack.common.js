@@ -19,19 +19,17 @@ module.exports = {
     extensions: ['.js', '.jsx']
   },
   module: {
-    rules: [
-    //   {
-    //   test: /\.jsx?$/,
-    //   enforce: 'pre',
-    //   exclude: /node_modules/,
-    //   use: [{
-    //     loader: 'eslint-loader',
-    //     options: {
-    //       configFile: path.resolve(__dirname, '../.eslintrc')
-    //     }
-    //   }]
-    // },
-      {
+    rules: [{
+      test: /\.jsx?$/,
+      enforce: 'pre',
+      exclude: /node_modules/,
+      use: [{
+        loader: 'eslint-loader',
+        options: {
+          configFile: path.resolve(__dirname, '../.eslintrc')
+        }
+      }]
+    }, {
       test: /\.jsx?$/,
       include: appPath,
       use: [{
