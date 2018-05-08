@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { CSSProperties, Component } from 'react';
+
 import { AppContext } from '../app/app';
 
 export interface UIBackProps {
@@ -23,9 +24,7 @@ export class UIBack extends Component<UIBackProps> {
         <div className="ui-back-wrap">
           <div className="ui-back-icon">
             <AppContext.Consumer>
-              {
-                context => (<div className={context.uiBackIcon}/>)
-              }
+              {(context: any) => (<div className={this.props.icon || context.uiBackIcon}/>)}
             </AppContext.Consumer>
           </div>
           <div

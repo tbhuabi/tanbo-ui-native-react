@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { UIPage, UIHeader, UIContent, UIBack, UINavbar, UITitle } from '../lib/index';
 
 export class Home extends Component {
+  componentWillMount() {
+    console.log(this);
+  }
   render() {
     return (
       <UIPage>
@@ -14,7 +16,7 @@ export class Home extends Component {
           </UINavbar>
         </UIHeader>
         <UIContent>
-          <Link to="/list">list</Link>
+          home
         </UIContent>
       </UIPage>
     );
