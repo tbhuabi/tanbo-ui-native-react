@@ -1,15 +1,9 @@
 import * as React from 'react';
 import { Component } from 'react';
 
-export interface UIRoute {
-  path: string;
-  component: any | Promise<any>;
-  children?: UIRoutes;
-}
+import { Routes, Route } from './router-base';
 
-export declare type UIRoutes = UIRoute[];
-
-export class UIRouter extends Component<{routes: UIRoutes, baseUrl?: string}> {
+export class UIRouter extends Component<{routes: Routes, baseUrl?: string}> {
   render() {
     return (
       <div className="ui-page">

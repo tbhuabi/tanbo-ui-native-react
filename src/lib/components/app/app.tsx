@@ -2,7 +2,7 @@ import * as React from 'react';
 import { createContext, Component } from 'react';
 
 import { getDeviceType } from './get-device-type';
-import { UIRoutes, UIRouter } from '../router/router';
+import { Routes, UIRouter } from '../router/router';
 
 export interface UIAppProps {
   routes: UIRoutes;
