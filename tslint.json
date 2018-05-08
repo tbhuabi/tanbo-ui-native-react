@@ -51,6 +51,7 @@
     "no-console": false,
     "newline-before-return": false,
     "array-type": false,
-    "prefer-array-literal": false
+    "prefer-array-literal": false,
+    "no-import-side-effect": [false]
   }
 }

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Component } from 'react';
 
-import { Routes, Route } from './router-base';
+import { Routes } from './router-base';
 
 export class UIRouter extends Component<{routes: Routes, baseUrl?: string}> {
   render() {

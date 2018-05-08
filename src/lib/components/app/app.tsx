@@ -2,10 +2,11 @@ import * as React from 'react';
 import { createContext, Component } from 'react';
 
 import { getDeviceType } from './get-device-type';
-import { Routes, UIRouter } from '../router/router';
+import { UIRouter } from '../router/router';
+import { Routes } from '../router/router-base';
 
 export interface UIAppProps {
-  routes: UIRoutes;
+  routes: Routes;
   uiBackIcon?: string;
 }
 

@@ -1,9 +1,9 @@
 import { Home } from './views/home';
 import { List } from './views/list';
 
-import { UIRoutes } from './lib/index';
+import { Routes } from './lib/index';
 
-export const routes: UIRoutes = [{
+export const routes: Routes = [{
   path: '',
   component: Home
 }, {
