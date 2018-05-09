@@ -1,53 +1,41 @@
-export interface Route {
+import { Routes } from './router-help';
+
+export interface UrlTree {
+  root: UrlTree;
+  parent: UrlTree;
   path: string;
-  component: any | Promise<any>;
-  children?: Routes;
+  children: Array<UrlTree> | Promise<Routes> | null;
 }
 
-export declare type Routes = Route[];
+export class RouterMatcher {
+  private path: string;
 
-// export interface Params {
-//   [key: string]: any
-// }
-//
-// export interface QueryParams {
-//   [key: string]: any
-// }
-//
-// export interface UrlSegment {
-//   name: string;
-//   params: Params;
-//   queryParams: QueryParams;
-// }
-//
-// export interface UrlTree {
-//   parent: UrlTree | null;
-//   matcher: RouterMatcher;
-//   children: Array<UrlTree>;
-// }
-//
-// export class RouterMatcher {
-//   private urlSegment: UrlSegment;
-//
-//   constructor(path: string) {
-//
-//   }
-//
-//   match(url: string): boolean {
-//
-//   }
-// }
-//
-// export class UrlParser {
-//   constructor(url: string) {
-//
-//   }
-// }
-//
-// export function createUrlTree(routes: Routes, parent: UrlTree = null): Array<UrlTree> {
-//   const tree: Array<UrlTree> = [];
-//   routes.forEach(item => {
-//
-//   });
-//   return tree;
-// }
+  constructor(path: string) {
+    this.path = path;
+  }
+
+  match(url?: string): boolean {
+    return url === this.path;
+  }
+}
+
+export function createUrlTree(routes: Routes, parent: UrlTree): Array<UrlTree> {
+  const tree: Array<UrlTree> = [];
+  routes.forEach(item => {
+    const child: any = {
+      root: parent.root,
+      parent: parent,
+      path: new RouterMatcher(item.path)
+    };
+
+    if (item.children) {
+      if (item.children instanceof Promise) {
+        child.children = item.children;
+      } else {
+        child.children = createUrlTree(item.children, child);
+      }
+    }
+    tree.push(child as UrlTree);
+  });
+  return tree;
+}

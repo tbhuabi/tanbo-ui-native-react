@@ -1,11 +1,8 @@
 import * as React from 'react';
 import { Component } from 'react';
-import { UIPage, UIHeader, UIContent, UIBack, UINavbar, UITitle } from '../lib/index';
+import { UIPage, UIHeader, UIContent, UIBack, UINavbar, UITitle, UILink } from '../lib/index';
 
 export class Home extends Component {
-  componentWillMount() {
-    console.log(this);
-  }
   render() {
     return (
       <UIPage>
@@ -16,7 +13,7 @@ export class Home extends Component {
           </UINavbar>
         </UIHeader>
         <UIContent>
-          home
+          <UILink to="list">link</UILink>
         </UIContent>
       </UIPage>
     );
