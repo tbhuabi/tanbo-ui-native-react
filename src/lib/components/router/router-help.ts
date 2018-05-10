@@ -20,7 +20,8 @@ export enum UrlSegmentType {
   self,
   child,
   query,
-  hash
+  hash,
+  param
 }
 
 export interface UrlSegment {

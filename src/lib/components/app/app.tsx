@@ -3,8 +3,9 @@ import { createContext, Component } from 'react';
 
 import { getDeviceType } from './get-device-type';
 import { UIRouterOutlet } from '../router/router-outlet';
-import { Routes } from '../router/router-help';
+import { Routes, UrlSegment, Route, UrlSegmentType } from '../router/router-help';
 import { UIRouterContext } from '../router/router-context';
+import { UrlParser } from '../router/url-parser';
 
 export interface UIAppProps {
   routes: Routes;
@@ -27,9 +28,38 @@ export class UIApp extends Component<UIAppProps> {
     deviceType: getDeviceType()
   };
 
+  private pathname = location.pathname;
+  private urlSegments: UrlSegment[];
+  private childComponent: any;
+  private childRoute: Route;
+
   constructor(props: any, context: any) {
     super(props, context);
-    console.log(this);
+    const pathReg = new RegExp(`^${this.props.baseHref}`);
+    if (!pathReg.test(this.pathname)) {
+      throw new Error(`没有匹配到路由${this.pathname}`);
+    }
+    const initUrl = this.pathname.replace(pathReg, '/');
+
+    this.urlSegments = new UrlParser(initUrl).parse();
+    let currentPath = this.urlSegments.shift();
+    if (currentPath && currentPath.type === UrlSegmentType.root) {
+      currentPath = this.urlSegments.shift();
+    }
+    if (currentPath) {
+      for (const route of this.props.routes) {
+        if (route.path === currentPath.token) {
+          this.childRoute = route;
+          if (route.component instanceof Promise) {
+            route.component.then(c => {
+              this.childComponent = c;
+            });
+          } else {
+            this.childComponent = route.component;
+          }
+        }
+      }
+    }
   }
 
   get className() {
@@ -41,7 +71,10 @@ export class UIApp extends Component<UIAppProps> {
       <div className={this.className}>
         <AppContext.Provider value={this.props}>
           <UIRouterContext.Provider value={{
-            routes: this.props.routes
+            route: this.childRoute,
+            component: this.childComponent,
+            pathPrefix: this.props.baseHref,
+            urlSegments: this.urlSegments
           }}>
             <UIRouterOutlet/>
           </UIRouterContext.Provider>

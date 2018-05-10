@@ -14,6 +14,12 @@ export class UrlParser {
         type: UrlSegmentType.root
       });
       this.index++;
+      if (this.index === this.url.length) {
+        this.urlSegments.push({
+          token: '',
+          type: UrlSegmentType.child
+        });
+      }
     }
     while (this.index < this.url.length) {
       if (this.expect('./')) {
@@ -34,6 +40,14 @@ export class UrlParser {
         this.urlSegments.push(this.readQueryParams());
       } else if (this.expect('/')) {
         this.index++;
+        if (this.index === this.url.length) {
+          this.urlSegments.push({
+            token: '',
+            type: UrlSegmentType.child
+          });
+        }
+      } else if (this.expect(':')) {
+        this.urlSegments.push(this.readParams());
       } else {
         this.urlSegments.push(this.readSegment());
       }
@@ -70,6 +84,25 @@ export class UrlParser {
     }
 
     return urlSegment;
+  }
+
+  readParams(): UrlSegment {
+    this.index++;
+    let path: string = '';
+    while (this.index < this.url.length) {
+      const ch = this.url.charAt(this.index);
+      if (ch === '/' || ch === '#' || ch === '?') {
+        break;
+      } else {
+        this.index++;
+        path += ch;
+      }
+    }
+
+    return {
+      token: path,
+      type: UrlSegmentType.param
+    };
   }
 
   readQueryParams(): UrlSegment {
