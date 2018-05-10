@@ -25,12 +25,12 @@ export class UIApp extends Component<UIAppProps> {
   static defaultProps: UIAppProps = defaultProps;
 
   state = {
-    deviceType: getDeviceType()
+    deviceType: getDeviceType(),
+    childComponent: null
   };
 
   private pathname = location.pathname;
   private urlSegments: UrlSegment[];
-  private childComponent: any;
   private childRoute: Route;
 
   constructor(props: any, context: any) {
@@ -52,10 +52,12 @@ export class UIApp extends Component<UIAppProps> {
           this.childRoute = route;
           if (route.component instanceof Promise) {
             route.component.then(c => {
-              this.childComponent = c;
+              this.setState({
+                childComponent: c
+              });
             });
           } else {
-            this.childComponent = route.component;
+            this.state.childComponent = route.component;
           }
         }
       }
@@ -72,7 +74,7 @@ export class UIApp extends Component<UIAppProps> {
         <AppContext.Provider value={this.props}>
           <UIRouterContext.Provider value={{
             route: this.childRoute,
-            component: this.childComponent,
+            component: this.state.childComponent,
             pathPrefix: this.props.baseHref,
             urlSegments: this.urlSegments
           }}>
