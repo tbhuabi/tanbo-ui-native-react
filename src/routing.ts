@@ -5,11 +5,7 @@ import { Routes } from './lib/index';
 
 export const routes: Routes = [{
   path: '',
-  component: new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(Home)
-    }, 5000);
-  })
+  component: Home
 }, {
   path: 'list',
   component: List

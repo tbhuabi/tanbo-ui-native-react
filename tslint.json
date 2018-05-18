@@ -55,6 +55,7 @@
     "no-import-side-effect": [false],
     "no-increment-decrement": false,
     "no-parameter-properties": false,
-    "no-reserved-keywords": false
+    "no-reserved-keywords": false,
+    "possible-timing-attack": false
   }
 }

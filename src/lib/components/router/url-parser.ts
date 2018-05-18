@@ -56,7 +56,7 @@ export class UrlParser {
     return this.urlSegments;
   }
 
-  readSegment(): UrlSegment {
+  private readSegment(): UrlSegment {
     let path: string = '';
     while (this.index < this.url.length) {
       const ch = this.url.charAt(this.index);
@@ -86,7 +86,7 @@ export class UrlParser {
     return urlSegment;
   }
 
-  readParams(): UrlSegment {
+  private readParams(): UrlSegment {
     this.index++;
     let path: string = '';
     while (this.index < this.url.length) {
@@ -105,7 +105,7 @@ export class UrlParser {
     };
   }
 
-  readQueryParams(): UrlSegment {
+  private readQueryParams(): UrlSegment {
     this.index++;
     const tokens = this.later().split('#');
     const queryString = tokens.shift() + '';
@@ -123,7 +123,7 @@ export class UrlParser {
     };
   }
 
-  readHash(): UrlSegment {
+  private readHash(): UrlSegment {
     this.index++;
     const hash = this.later();
     this.index = this.url.length;
@@ -133,11 +133,11 @@ export class UrlParser {
     };
   }
 
-  later(): string {
+  private later(): string {
     return this.url.slice(this.index, this.url.length);
   }
 
-  expect(text: string): boolean {
+  private expect(text: string): boolean {
     const entIndex = this.index + text.length;
     return entIndex <= this.url.length ? text === this.url.slice(this.index, entIndex) : false;
   }

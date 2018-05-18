@@ -29,3 +29,15 @@ export interface UrlSegment {
   type: UrlSegmentType;
   params?: Params;
 }
+
+export interface UrlTree {
+  parent: UrlTree | null;
+  path: string;
+  component: any | Promise<any>;
+  children?: UrlTree[] | Promise<Routes>;
+}
+
+export interface NavigationOptions {
+  params?: Params;
+  queryParams?: QueryParams;
+}
